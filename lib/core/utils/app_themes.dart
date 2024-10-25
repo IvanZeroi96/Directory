@@ -52,4 +52,29 @@ ThemeData getThemeData() => ThemeData(
       fontSize: 20,
     ),
   ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColors.appBarColor,
+    centerTitle: true,
+    titleTextStyle: const TextStyle(
+      fontFamily: 'Montserrat',
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+    ),
+    elevation: 0,
+    surfaceTintColor: AppColors.appBarColor,
+    foregroundColor: Colors.white,
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    shape: CircleBorder(),
+    backgroundColor: AppColors.primaryColor,
+  ),
+  iconTheme: IconThemeData(
+    color: AppColors.iconColor,
+    size: 35,
+  ),
+  primaryIconTheme: IconThemeData(
+    color: AppColors.iconColor,
+    size: 30,
+  ),
 );

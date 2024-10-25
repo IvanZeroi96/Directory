@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:directory/features/read_person/presentation/pages/read_person_page.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -12,6 +13,7 @@ class SplashController extends GetxController {
         seconds: 3,
       ),
       () {
+        Get.offNamed(ReadPersonPage.routeName);
       },
     );
   }

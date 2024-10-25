@@ -17,4 +17,6 @@ class AppColors {
   static Color get textColor => isDarkMode ? const Color(0xFFFFFFFF) : const Color(0xFF272D3B);
   static Color get backgroundScaffold => isDarkMode ? const Color(0xFF0D0F11) : const Color(0xFFF6F6F6);
   static Color get backgroundCard => isDarkMode ? const Color(0xFF1A1D22) : const Color(0xFFFFFFFF);
+  static Color get appBarColor => isDarkMode ? const Color(0xFF23252C) : primaryColor;
+  static Color get iconColor => isDarkMode ? secondaryColor : primaryColor;
 }
