@@ -1,4 +1,6 @@
 
+import 'package:directory/features/create_person/presentation/manager/create_person_binding.dart';
+import 'package:directory/features/create_person/presentation/pages/create_person_page.dart';
 import 'package:directory/features/read_person/presentation/manager/read_person_binding.dart';
 import 'package:directory/features/read_person/presentation/pages/read_person_page.dart';
 import 'package:directory/features/splash/presentation/manager/splash_binding.dart';
@@ -20,6 +22,15 @@ class AppPages {
       transition: route.Transition.fadeIn,
       transitionDuration: const Duration(
         milliseconds: 1000,
+      ),
+    ),
+    GetPage(
+      name: CreatePersonPage.routeName,
+      page: () => const CreatePersonPage(),
+      binding: CreatePersonBinding(),
+      transition: route.Transition.fadeIn,
+      transitionDuration: const Duration(
+        milliseconds: 900,
       ),
     ),
   ];
