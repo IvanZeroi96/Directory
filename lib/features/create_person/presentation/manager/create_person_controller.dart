@@ -61,6 +61,7 @@ class CreatePersonController extends AppGetXController {
         );
         if (isSuccess) {
           Common.showSnackBar(Get.context!, 'Contacto guardado correctamente.');
+          Get.back(result: true);
         } else {
           Common.showSnackBar(Get.context!, 'Contacto no guardado.');
         }

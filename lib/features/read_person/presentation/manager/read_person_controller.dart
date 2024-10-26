@@ -1,15 +1,49 @@
 import 'package:directory/core/manager/app_getx_controller.dart';
 import 'package:directory/features/create_person/presentation/pages/create_person_page.dart';
+import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/features/read_person/domain/use_cases/read_person_use_case.dart';
+import 'package:directory/features/update_person.dart/presentation/pages/update_person_page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReadPersonController extends AppGetXController {
+  final ReadPersonUseCase _readPersonUseCase;
+  ReadPersonController(this._readPersonUseCase);
+
+  List<PersonEntity> _listPerson = [];
+  List<PersonEntity> get listPerson => _listPerson;
+
+
   @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
+  void onInit() {
+    getContacts();
+    super.onInit();
   }
 
-  void goToCreatePerson() {
-    Get.toNamed(CreatePersonPage.routeName);
+  Future<void> getContacts() async {
+    try {
+      showProgressHUD();
+      _listPerson = await _readPersonUseCase.execute();
+      dismissProgressHUD();
+      update(['list_person']);
+    } catch (e) {
+      debugPrint('Error: _readPersonUseCase -> $e');
+      dismissProgressHUD();
+      update(['list_person']);
+    }
+  }
+
+  void goToCreatePerson() async {
+    var result = await Get.toNamed(CreatePersonPage.routeName);
+    if(result != null){
+      getContacts();
+    }
+  }
+
+  void goToEditPerson(String id) async {
+    var result = await Get.toNamed(UpdatePersonPage.routeName,arguments: {'id': id});
+    if(result != null){
+      getContacts();
+    }
   }
 }

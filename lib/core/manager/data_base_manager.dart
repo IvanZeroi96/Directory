@@ -1,3 +1,4 @@
+import 'package:directory/features/read_person/domain/entities/person_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,7 +20,7 @@ class DatabaseManager {
       _path!,
       version: 1,
       onCreate: (Database db, int version) async {
-        await db.execute('CREATE TABLE IF NOT EXISTS ${DBKeys.contacts} (id INTEGER, name TEXT, email TEXT, age TEXT)');
+        await db.execute('CREATE TABLE IF NOT EXISTS ${DBKeys.contacts} (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, age TEXT)');
       },
       onUpgrade: _onUpgrade,
     );
@@ -98,12 +99,11 @@ class DatabaseManager {
     return update;
   }
 
-  /*Future<List<ProspectoObj>> getProspectos(String idEvento) async {
+  Future<List<PersonEntity>> getPersons() async {
     Database database = await db;
-    final List<Map<String, Object?>> queryReponse =
-        await database.query('Prospectos', where: 'idEvento = ?', whereArgs: [idEvento]);
-    return queryReponse.map((e) => ProspectoObj.fromMap(e)).toList();
-  }*/
+    final List<Map<String, Object?>> queryReponse = await database.query(DBKeys.contacts);
+    return queryReponse.map((e) => PersonEntity.fromMap(e)).toList();
+  }
 
   /*Future<ProspectoObj> getProspecto(int id, String idEvento) async {
     Database database = await db;
