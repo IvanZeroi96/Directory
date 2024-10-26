@@ -20,17 +20,6 @@ class ReadPersonRepositoryImpl implements ReadPersonRepository {
   }
 
   @override
-  Future<bool> savePersonsDataBase() async {
-    try {
-      DatabaseManager databaseManager = DatabaseManager();
-      return false;
-      return await databaseManager.insertProspecto('', '', '');
-    } catch (e) {
-      return false;
-    }
-  }
-
-  @override
   Future<List<PersonEntity>> getPersonsDB() async {
     try {
       DatabaseManager databaseManager = DatabaseManager();

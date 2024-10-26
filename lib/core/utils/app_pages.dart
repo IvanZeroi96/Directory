@@ -23,25 +23,27 @@ class AppPages {
       binding: ReadPersonBinding(),
       transition: route.Transition.fadeIn,
       transitionDuration: const Duration(
-        milliseconds: 1000,
+        milliseconds: 500,
       ),
     ),
     GetPage(
       name: CreatePersonPage.routeName,
       page: () => const CreatePersonPage(),
       binding: CreatePersonBinding(),
+      fullscreenDialog: true,
       transition: route.Transition.fadeIn,
       transitionDuration: const Duration(
-        milliseconds: 900,
+        milliseconds: 500,
       ),
     ),
     GetPage(
       name: UpdatePersonPage.routeName,
       page: () => const UpdatePersonPage(),
       binding: UpdatePersonBinding(),
+      fullscreenDialog: true,
       transition: route.Transition.fadeIn,
       transitionDuration: const Duration(
-        milliseconds: 900,
+        milliseconds: 500,
       ),
     ),
   ];

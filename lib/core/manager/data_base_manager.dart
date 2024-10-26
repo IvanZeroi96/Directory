@@ -56,7 +56,7 @@ class DatabaseManager {
     return count > 0;
   }
 
-  Future<bool> insertProspecto(String name, String email, String age) async {
+  Future<bool> insertPerson(String name, String email, String age) async {
     bool inserted = false;
     try {
       Database database = await db;
@@ -77,12 +77,12 @@ class DatabaseManager {
     return inserted;
   }
 
-  Future<bool> updateProspecto(String id, String name, String email, String age) async {
+  Future<bool> updatePerson(String id, String name, String email, String age) async {
     bool update = false;
     try {
       Database database = await db;
       await database.update(
-        'Prospectos',
+        DBKeys.contacts,
         {
           'name': name,
           'email': email,
@@ -94,10 +94,28 @@ class DatabaseManager {
       update = true;
     } catch (e) {
       update = false;
-      debugPrint("ERROR AL ACTUALIZAR EN CONTACTO -> $e");
+      debugPrint("ERROR AL ACTUALIZAR EL CONTACTO -> $e");
     }
 
     return update;
+  }
+
+  Future<bool> deletePerson(int id) async {
+    bool delete = false;
+    try {
+      Database database = await db;
+      await database.delete(
+        DBKeys.contacts,
+        where: 'id = ? ',
+        whereArgs: [id],
+      );
+      delete = true;
+    } catch (e) {
+      delete = false;
+      debugPrint("ERROR AL BORRAR EL CONTACTO -> $e");
+    }
+
+    return delete;
   }
 
   Future<List<PersonEntity>> getPersons() async {

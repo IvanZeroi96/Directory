@@ -54,7 +54,6 @@ class APIProvider {
     required ApiEndpoints endpoint,
     Map<String, dynamic>? queryParams,
     List<dynamic>? pathParameters,
-    bool avoidErrorMessage = false,
   }) : this._(
           method: HTTPMethod.get,
           endpoint: endpoint,
@@ -65,7 +64,6 @@ class APIProvider {
   APIProvider.put({
     required ApiEndpoints endpoint,
     Map<String, dynamic>? body,
-    bool avoidErrorMessage = false,
   }) : this._(
           method: HTTPMethod.put,
           endpoint: endpoint,
@@ -75,7 +73,6 @@ class APIProvider {
   APIProvider.patch({
     required ApiEndpoints endpoint,
     Map<String, dynamic>? body,
-    bool avoidErrorMessage = false,
   }) : this._(
           method: HTTPMethod.patch,
           endpoint: endpoint,
@@ -85,7 +82,6 @@ class APIProvider {
   APIProvider.delete({
     required ApiEndpoints endpoint,
     Map<String, dynamic>? body,
-    bool avoidErrorMessage = false,
   }) : this._(
           method: HTTPMethod.delete,
           endpoint: endpoint,

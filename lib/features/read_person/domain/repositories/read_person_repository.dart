@@ -3,5 +3,4 @@ import 'package:directory/features/read_person/domain/entities/person_entity.dar
 abstract class ReadPersonRepository {
   Future<bool> getPersonsService();
   Future<List<PersonEntity>> getPersonsDB();
-  Future<bool> savePersonsDataBase();
 }

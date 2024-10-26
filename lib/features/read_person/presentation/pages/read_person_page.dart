@@ -47,17 +47,33 @@ class ReadPersonPage extends GetView<ReadPersonController> {
                   child: ListView.separated(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text('Nombre: ${controller.listPerson[index].name}'),
-                        subtitle: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Email: ${controller.listPerson[index].email}'),
-                            Text('Edad: ${controller.listPerson[index].age}'),
-                          ],
+                      return Dismissible(
+                        key: Key(controller.listPerson[index].id.toString()),
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: const Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
                         ),
-                        onTap: () => controller.goToEditPerson(controller.listPerson[index].id),
+                        direction: DismissDirection.startToEnd,
+                        onDismissed: (direction) {
+                          controller.setDeletePerson(controller.listPerson[index].id);
+                        },
+                        child: ListTile(
+                          title: Text('Nombre: ${controller.listPerson[index].name}'),
+                          subtitle: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Email: ${controller.listPerson[index].email}'),
+                              Text('Edad: ${controller.listPerson[index].age}'),
+                            ],
+                          ),
+                          onTap: () => controller.goToEditPerson(controller.listPerson[index].id),
+                        ),
                       );
                     },
                     separatorBuilder: (context, index) {

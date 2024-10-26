@@ -23,7 +23,7 @@ class UpdatePersonRepositoryImpl implements UpdatePersonRepository {
   Future<bool> updatePersonDataBase(String name, String email, String age) async {
     try {
       DatabaseManager databaseManager = DatabaseManager();
-      return await databaseManager.insertProspecto(name, email, age);
+      return await databaseManager.insertPerson(name, email, age);
     } catch (e) {
       return false;
     }
