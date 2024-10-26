@@ -5,6 +5,8 @@ import 'package:directory/features/read_person/presentation/manager/read_person_
 import 'package:directory/features/read_person/presentation/pages/read_person_page.dart';
 import 'package:directory/features/splash/presentation/manager/splash_binding.dart';
 import 'package:directory/features/splash/presentation/pages/splash_page.dart';
+import 'package:directory/features/update_person.dart/presentation/manager/update_person_binding.dart';
+import 'package:directory/features/update_person.dart/presentation/pages/update_person_page.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart' as route;
 
@@ -28,6 +30,15 @@ class AppPages {
       name: CreatePersonPage.routeName,
       page: () => const CreatePersonPage(),
       binding: CreatePersonBinding(),
+      transition: route.Transition.fadeIn,
+      transitionDuration: const Duration(
+        milliseconds: 900,
+      ),
+    ),
+    GetPage(
+      name: UpdatePersonPage.routeName,
+      page: () => const UpdatePersonPage(),
+      binding: UpdatePersonBinding(),
       transition: route.Transition.fadeIn,
       transitionDuration: const Duration(
         milliseconds: 900,

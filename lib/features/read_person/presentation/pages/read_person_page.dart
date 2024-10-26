@@ -57,7 +57,7 @@ class ReadPersonPage extends GetView<ReadPersonController> {
                             Text('Edad: ${controller.listPerson[index].age}'),
                           ],
                         ),
-                        onTap: () => controller.goToEditPerson(controller.listPerson[index].id.toString()),
+                        onTap: () => controller.goToEditPerson(controller.listPerson[index].id),
                       );
                     },
                     separatorBuilder: (context, index) {

@@ -40,7 +40,7 @@ class ReadPersonController extends AppGetXController {
     }
   }
 
-  void goToEditPerson(String id) async {
+  void goToEditPerson(int id) async {
     var result = await Get.toNamed(UpdatePersonPage.routeName,arguments: {'id': id});
     if(result != null){
       getContacts();

@@ -20,7 +20,8 @@ class DatabaseManager {
       _path!,
       version: 1,
       onCreate: (Database db, int version) async {
-        await db.execute('CREATE TABLE IF NOT EXISTS ${DBKeys.contacts} (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, age TEXT)');
+        await db.execute(
+            'CREATE TABLE IF NOT EXISTS ${DBKeys.contacts} (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, age TEXT)');
       },
       onUpgrade: _onUpgrade,
     );
@@ -105,11 +106,11 @@ class DatabaseManager {
     return queryReponse.map((e) => PersonEntity.fromMap(e)).toList();
   }
 
-  /*Future<ProspectoObj> getProspecto(int id, String idEvento) async {
+  Future<PersonEntity> getPerson(int id) async {
     Database database = await db;
-    var queryReponse = await database.query('Prospectos', where: 'id = ? AND idEvento = ?', whereArgs: [id, idEvento]);
-    return queryReponse.map((e) => ProspectoObj.fromMap(e)).first;
-  }*/
+    var queryReponse = await database.query(DBKeys.contacts, where: 'id = ?', whereArgs: [id]);
+    return queryReponse.map((e) => PersonEntity.fromMap(e)).first;
+  }
 }
 
 class DBKeys {
