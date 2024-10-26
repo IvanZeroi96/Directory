@@ -56,17 +56,13 @@ class DatabaseManager {
     return count > 0;
   }
 
-  Future<bool> insertPerson(String name, String email, String age) async {
+  Future<bool> insertPerson(PersonEntity personEntity) async {
     bool inserted = false;
     try {
       Database database = await db;
       await database.insert(
         DBKeys.contacts,
-        {
-          'name': name,
-          'email': email,
-          'age': age,
-        },
+        personEntity.toMapInsert(),
       );
       inserted = true;
     } catch (e) {
@@ -77,19 +73,19 @@ class DatabaseManager {
     return inserted;
   }
 
-  Future<bool> updatePerson(String id, String name, String email, String age) async {
+  Future<bool> updatePerson(PersonEntity personEntity) async {
     bool update = false;
     try {
       Database database = await db;
       await database.update(
         DBKeys.contacts,
         {
-          'name': name,
-          'email': email,
-          'age': age,
+          'name': personEntity.name,
+          'email': personEntity.email,
+          'age': personEntity.age,
         },
         where: 'id = ? ',
-        whereArgs: [id],
+        whereArgs: [personEntity.id],
       );
       update = true;
     } catch (e) {

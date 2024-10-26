@@ -9,22 +9,23 @@ class UpdatePersonRepositoryImpl implements UpdatePersonRepository {
   UpdatePersonRepositoryImpl(this._updatePersonApi);
 
   @override
-  Future<bool> updatePersonService(String name, String email, String age) async {
+  Future<bool> updatePersonService(PersonEntity personEntity) async {
     try {
-      final bool response = await _updatePersonApi.updatePerson(name, email, age);
+      final bool response = await _updatePersonApi.updatePerson(personEntity);
       return response;
     } catch (e) {
-      debugPrint('Error: _sendPersonService -> $e');
+      debugPrint('Error: _updatePersonService -> $e');
       return false;
     }
   }
 
   @override
-  Future<bool> updatePersonDataBase(String name, String email, String age) async {
+  Future<bool> updatePersonDataBase(PersonEntity personEntity) async {
     try {
       DatabaseManager databaseManager = DatabaseManager();
-      return await databaseManager.insertPerson(name, email, age);
+      return await databaseManager.updatePerson(personEntity);
     } catch (e) {
+      debugPrint('Error: _updatePersonDataBase -> $e');
       return false;
     }
   }
@@ -35,6 +36,7 @@ class UpdatePersonRepositoryImpl implements UpdatePersonRepository {
       DatabaseManager databaseManager = DatabaseManager();
       return await databaseManager.getPerson(id);
     } catch (e) {
+      debugPrint('Error: _updateGetPersonDataBase-> $e');
       return PersonEntity();
     }
   }
@@ -42,10 +44,9 @@ class UpdatePersonRepositoryImpl implements UpdatePersonRepository {
   @override
   Future<PersonEntity> updateGetPersonService(int id) async {
     try {
-      final bool response = await _updatePersonApi.updateGetPerson(id);
-      return PersonEntity();
+      return await _updatePersonApi.updateGetPerson(id);
     } catch (e) {
-      debugPrint('Error: _sendPersonService -> $e');
+      debugPrint('Error: _updateGetPersonService -> $e');
       return PersonEntity();
     }
   }

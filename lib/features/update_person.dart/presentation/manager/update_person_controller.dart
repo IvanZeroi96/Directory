@@ -82,9 +82,12 @@ class UpdatePersonController extends AppGetXController {
       showProgressHUD();
       if (_formKeyRegister.currentState!.validate()) {
         var isSuccess = await _updatePersonUseCase.execute(
-          _nameTextEditingController.text,
-          _emailTextController.text,
-          _ageTextController.text,
+          PersonEntity(
+            id: Get.arguments['id']?? '',
+            name: _nameTextEditingController.text,
+            email: _emailTextController.text,
+            age: _ageTextController.text,
+          )
         );
         if (isSuccess) {
           Common.showSnackBar(Get.context!, 'Contacto actualizado correctamente.');

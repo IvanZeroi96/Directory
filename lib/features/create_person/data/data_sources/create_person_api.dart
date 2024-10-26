@@ -1,15 +1,17 @@
 import 'package:directory/data/domains/api_end_points.dart';
 import 'package:directory/data/domains/entitys/app_api_response_entity.dart';
 import 'package:directory/data/providers/api_provider.dart';
+import 'package:directory/features/read_person/domain/entities/person_entity.dart';
 
 class CreatePersonApi {
-  Future<bool> createPerson(String name, String email, String age) async {
+  Future<bool> createPerson(PersonEntity personEntity) async {
     AppApiResponseEntity responseEntity = await APIProvider.post(
       endpoint: ApiEndpoints.setPerson,
       body: {
-        'name': name,
-        'email': email,
-        'age': age
+        'id': personEntity.id,
+        'name': personEntity.name,
+        'email': personEntity.email,
+        'age': personEntity.age
       },
     ).request();
 

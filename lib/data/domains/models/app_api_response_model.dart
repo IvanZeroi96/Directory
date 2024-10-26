@@ -9,7 +9,12 @@ class AppApiResponseModel {
   final bool? expPassword;
   dynamic response;
 
-  AppApiResponseModel(this.success, this.message, this.response, this.expPassword);
+  AppApiResponseModel(
+    this.success,
+    this.message,
+    this.response,
+    this.expPassword,
+  );
 
   factory AppApiResponseModel.fromJson(Map<String, dynamic> json) => _$AppApiResponseModelFromJson(json);
   Map<String, dynamic> toJson() => _$AppApiResponseModelToJson(this);

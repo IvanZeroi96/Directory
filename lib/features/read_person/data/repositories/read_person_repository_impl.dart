@@ -9,13 +9,13 @@ class ReadPersonRepositoryImpl implements ReadPersonRepository {
   ReadPersonRepositoryImpl(this._readPersonApi);
 
   @override
-  Future<bool> getPersonsService() async {
+  Future<List<PersonEntity>> getPersonsService() async {
     try {
-      final bool response = await _readPersonApi.getReadPersons();
-      return response;
+      List<PersonEntity> listPersons = await _readPersonApi.getReadPersons();
+      return listPersons;
     } catch (e) {
       debugPrint('Error: _getPersonService -> $e');
-      return false;
+      return [];
     }
   }
 

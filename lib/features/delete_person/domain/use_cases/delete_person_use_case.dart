@@ -5,8 +5,8 @@ class DeletePersonUseCase {
   DeletePersonUseCase(this._deletePersonRepository);
 
   Future<bool> execute(int id) async {
-    bool isSuccessService = await _deletePersonRepository.setDeletePersonsService(id);
-    bool isSuccessDatabase = await _deletePersonRepository.deletePersonsDataBase(id);
-    return isSuccessDatabase;
+    await _deletePersonRepository.setDeletePersonsService(id);
+    bool isSuccess = await _deletePersonRepository.deletePersonsDataBase(id);
+    return isSuccess;
   }
 }

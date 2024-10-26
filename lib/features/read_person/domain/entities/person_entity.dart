@@ -25,4 +25,12 @@ class PersonEntity {
       'age': age,
     };
   }
+
+  Map<String, Object?> toMapInsert() {
+    return {
+      'name': name,
+      'email': email,
+      'age': age,
+    };
+  }
 }

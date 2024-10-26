@@ -2,6 +2,7 @@ import 'package:directory/core/manager/app_getx_controller.dart';
 import 'package:directory/core/utils/app_regex_validations.dart';
 import 'package:directory/core/utils/commons.dart';
 import 'package:directory/features/create_person/domain/use_cases/create_person_use_case.dart';
+import 'package:directory/features/read_person/domain/entities/person_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,9 +56,11 @@ class CreatePersonController extends AppGetXController {
       showProgressHUD();
       if (_formKeyRegister.currentState!.validate()) {
         var isSuccess = await _createPersonUseCase.execute(
-          _nameTextEditingController.text,
-          _emailTextController.text,
-          _ageTextController.text,
+          PersonEntity(
+            name: _nameTextEditingController.text,
+            email: _emailTextController.text,
+            age: _ageTextController.text,
+          ),
         );
         if (isSuccess) {
           Common.showSnackBar(Get.context!, 'Contacto guardado correctamente.');

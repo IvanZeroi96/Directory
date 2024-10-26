@@ -6,8 +6,8 @@ class ReadPersonUseCase {
   ReadPersonUseCase(this._readPersonRepository);
 
   Future<List<PersonEntity>> execute() async {
-    bool isSuccess = await _readPersonRepository.getPersonsService();
-    if(!isSuccess){
+    List<PersonEntity> listPersons = await _readPersonRepository.getPersonsService();
+    if(listPersons.isEmpty){
       return await _readPersonRepository.getPersonsDB();
     }
     return [];
