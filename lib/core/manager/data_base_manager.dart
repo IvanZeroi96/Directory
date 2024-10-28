@@ -1,4 +1,4 @@
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -124,6 +124,21 @@ class DatabaseManager {
     Database database = await db;
     var queryReponse = await database.query(DBKeys.contacts, where: 'id = ?', whereArgs: [id]);
     return queryReponse.map((e) => PersonEntity.fromMap(e)).first;
+  }
+
+  Future<PersonEntity?> getLastPerson() async {
+    Database database = await db;
+    var queryResponse = await database.query(
+        DBKeys.contacts,
+        orderBy: 'id DESC',
+        limit: 1
+    );
+
+    if (queryResponse.isNotEmpty) {
+      return PersonEntity.fromMap(queryResponse.first);
+    } else {
+      return null;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:directory/features/read_person/domain/repositories/read_person_repository.dart';
 
 class ReadPersonUseCase {
@@ -10,6 +10,6 @@ class ReadPersonUseCase {
     if(listPersons.isEmpty){
       return await _readPersonRepository.getPersonsDB();
     }
-    return [];
+    return listPersons;
   }
 }

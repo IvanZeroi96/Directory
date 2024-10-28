@@ -1,15 +1,18 @@
 enum ApiEndpoints {
   getPersons,
   setPerson,
+  updatePersons,
 }
 
 extension ApiEndpointsString on ApiEndpoints {
   String get url {
     switch (this) {
       case ApiEndpoints.getPersons:
-        return 'persons';
+        return 'contacts';
       case ApiEndpoints.setPerson:
-        return 'person';
+        return 'contacts';
+      case ApiEndpoints.updatePersons:
+        return 'contacts';
     }
   }
 }

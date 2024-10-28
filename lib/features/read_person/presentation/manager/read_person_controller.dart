@@ -1,7 +1,7 @@
 import 'package:directory/core/manager/app_getx_controller.dart';
 import 'package:directory/features/create_person/presentation/pages/create_person_page.dart';
 import 'package:directory/features/delete_person/domain/use_cases/delete_person_use_case.dart';
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:directory/features/read_person/domain/use_cases/read_person_use_case.dart';
 import 'package:directory/features/update_person.dart/presentation/pages/update_person_page.dart';
 import 'package:flutter/material.dart';

@@ -10,7 +10,6 @@ class DeletePersonRepositoryImpl implements DeletePersonRepository {
   @override
   Future<bool> deletePersonsDataBase(int id) async {
     try {
-
       DatabaseManager databaseManager = DatabaseManager();
       return await databaseManager.deletePerson(id);
     } catch (e) {

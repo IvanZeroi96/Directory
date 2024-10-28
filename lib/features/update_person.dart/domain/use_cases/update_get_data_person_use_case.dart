@@ -1,4 +1,4 @@
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:directory/features/update_person.dart/domain/repositories/update_person_repository.dart';
 
 class UpdateGetDataPersonUseCase {
@@ -9,7 +9,8 @@ class UpdateGetDataPersonUseCase {
     PersonEntity personEntity = await _updatePersonRepository.updateGetPersonService(id);
     if(personEntity.name.isEmpty){
       return await _updatePersonRepository.updateGetPersonDataBase(id);
+    }else{
+      return personEntity;
     }
-    return personEntity;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:directory/data/domains/models/person_model.dart';
+
 class PersonEntity {
   int id;
   String name;
@@ -32,5 +34,18 @@ class PersonEntity {
       'email': email,
       'age': age,
     };
+  }
+
+  static List<PersonEntity> fromModelList(List<PersonModel> models) {
+    return models.map((model) => fromModel(model)).toList();
+  }
+
+  static PersonEntity fromModel(PersonModel model) {
+    return PersonEntity(
+      id: int.tryParse(model.id) ?? 0,
+      name: model.name,
+      email: model.email,
+      age: model.age.toString(),
+    );
   }
 }

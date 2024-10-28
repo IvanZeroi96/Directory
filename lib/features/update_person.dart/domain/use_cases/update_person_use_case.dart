@@ -1,5 +1,5 @@
 
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:directory/features/update_person.dart/domain/repositories/update_person_repository.dart';
 
 class UpdatePersonUseCase {
@@ -7,7 +7,7 @@ class UpdatePersonUseCase {
   UpdatePersonUseCase(this._updatePersonRepository);
 
   Future<bool> execute(PersonEntity personEntity) async {
-    _updatePersonRepository.updatePersonService(personEntity);
+    await _updatePersonRepository.updatePersonService(personEntity);
     return await _updatePersonRepository.updatePersonDataBase(personEntity);
   }
 }

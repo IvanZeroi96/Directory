@@ -1,7 +1,7 @@
 import 'package:directory/core/manager/app_getx_controller.dart';
 import 'package:directory/core/utils/app_regex_validations.dart';
 import 'package:directory/core/utils/commons.dart';
-import 'package:directory/features/read_person/domain/entities/person_entity.dart';
+import 'package:directory/data/domains/entitys/person_entity.dart';
 import 'package:directory/features/update_person.dart/domain/use_cases/update_get_data_person_use_case.dart';
 import 'package:directory/features/update_person.dart/domain/use_cases/update_person_use_case.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +40,10 @@ class UpdatePersonController extends AppGetXController {
       _ageTextController.text = personEntity.age;
       dismissProgressHUD();
       update();
+      if(personEntity.name.isEmpty){
+        Common.showSnackBar(Get.context!, 'Contacto no encontrado.');
+        Get.back();
+      }
     } catch (e) {
       debugPrint('Error: _getDataProspect -> $e');
       Common.showSnackBar(Get.context!, 'Contacto no encontrado.');
@@ -83,7 +87,7 @@ class UpdatePersonController extends AppGetXController {
       if (_formKeyRegister.currentState!.validate()) {
         var isSuccess = await _updatePersonUseCase.execute(
           PersonEntity(
-            id: Get.arguments['id']?? '',
+            id: Get.arguments['id'] ?? 0,
             name: _nameTextEditingController.text,
             email: _emailTextController.text,
             age: _ageTextController.text,
